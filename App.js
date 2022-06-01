@@ -6,11 +6,27 @@ import {
   KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
+  Keyboard,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Task from "./components/Task";
 
 export default function App() {
+  const [task, setTask] = useState("");
+  const [taskItem, setTaskItem] = useState([]);
+
+  const handleTask = () => {
+    Keyboard.dismiss();
+    setTaskItem([...taskItem, task]);
+    setTask(null);
+  };
+
+  const handleDelete = (index) => {
+    let itemsCopy = [...taskItem];
+    itemsCopy.splice(index, 1);
+    setTaskItem(itemsCopy);
+  };
+
   return (
     <View style={styles.container}>
       {/* My Tasks */}
@@ -25,9 +41,14 @@ export default function App() {
 
         {/* Task Items */}
         <View style={styles.item}>
-          <Task text={"Task 1"} />
-          <Task text={"Task 2"} />
-          <Task text={"Task 3"} />
+          {taskItem.map((item, index) => {
+            return (
+              <TouchableOpacity key={index} onPress={() => handleDelete(index)}>
+                <Task text={item} />
+              </TouchableOpacity>
+            )
+          })
+          }
         </View>
       </View>
 
@@ -37,9 +58,14 @@ export default function App() {
         style={styles.keyboardAvoidingView}
       >
         {/* Add Task */}
-        <TextInput style={styles.input} placeholder="Add Task" />
+        <TextInput
+          style={styles.input}
+          placeholder="Add Task"
+          value={task}
+          onChange={text => setTask(text)}
+        />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleTask()}>
           <View style={styles.addButton}>
             <Text style={styles.addButtonText}>+</Text>
           </View>
