@@ -32,7 +32,7 @@ export default function App() {
       {/* My Tasks */}
       <View style={styles.taskWrapper}>
         <View style={styles.titleWrapper}>
-          <Text style={styles.title}>My Todos</Text>
+          <Text style={styles.title}>Sonny Do</Text>
           <Image
             source={require("./assets/images/todo.png")}
             style={{ width: 70, height: 70, marginLeft: 10 }}
@@ -62,11 +62,11 @@ export default function App() {
           style={styles.input}
           placeholder="Add Task"
           value={task}
-          onChange={text => setTask(text)}
+          onChangeText={text => setTask(text)}
         />
 
-        <TouchableOpacity onPress={() => handleTask()}>
-          <View style={styles.addButton}>
+        <TouchableOpacity onPress={() => handleTask()} style={styles.addButton}>
+          <View>
             <Text style={styles.addButtonText}>+</Text>
           </View>
         </TouchableOpacity>

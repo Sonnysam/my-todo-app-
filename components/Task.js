@@ -9,7 +9,6 @@ export default function Task(props) {
         <Text style={styles.text}>{props.text}</Text>
       </View>
       <View style={styles.circle}></View>
-      {/* <Text>Task</Text> */}
     </View>
   );
 }
