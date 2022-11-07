@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function Task(props) {
   return (
@@ -8,7 +9,8 @@ export default function Task(props) {
         <View style={styles.square}></View>
         <Text style={styles.text}>{props.text}</Text>
       </View>
-      <View style={styles.circle}></View>
+      {/* <View style={styles.circle}></View> */}
+      <MaterialIcons name="delete" size={24} color="tomato" />
     </View>
   );
 }
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    maxWidth: "80%",
+    // maxWidth: "80%",
     fontWeight: "bold",
   },
   circle: {
